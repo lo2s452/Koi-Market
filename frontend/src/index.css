@@ -1,0 +1,259 @@
+:root {
+  --ink: #20241f;
+  --ink-soft: #4b5650;
+  --paper: #fbf9f2;
+  --paper-2: #f1ede1;
+  --canvas: #ffffff;
+  --canvas-deep: #ffffff;
+
+  --azure-900: #0d1b2a;
+  --azure-700: #1b3a5c;
+  --azure-500: #3a5a80;
+  --azure-300: #7c94ab;
+  --azure-100: #e8edf2;
+  --azure: #1b3a5c;
+  --azure-tint: #e2e8ef;
+
+  --on-azure: #f5f7fa;
+  --on-azure-dim: rgba(245, 247, 250, 0.78);
+
+  --vermillion: #b3402c;
+  --vermillion-deep: #8f2615;
+  --vermillion-tint: #f6ded6;
+
+  --text: var(--ink);
+  --text-muted: var(--ink-soft);
+  --accent: var(--azure-700);
+  --accent-deep: var(--azure-900);
+  --accent-text: #fff8ee;
+  --link: var(--azure-700);
+  --link-hover: var(--azure-900);
+  --border: var(--ink);
+  --danger: var(--vermillion-deep);
+  --success: var(--azure);
+
+  --border-w: 1px;
+  --radius: 4px;
+  --shadow-sm: 0 1px 2px rgba(12, 51, 47, 0.1);
+  --shadow-md: 0 6px 20px -6px rgba(12, 51, 47, 0.18);
+  --shadow-lift: 0 14px 32px -12px rgba(12, 51, 47, 0.28);
+
+  font: 16px/1.6 'Noto Sans', 'Noto Sans JP', system-ui, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--canvas);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--canvas);
+  background-image:
+    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.08  0 0 0 0 0.15  0 0 0 0 0.13  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, var(--canvas) 0%, var(--canvas-deep) 100%);
+  background-repeat: repeat, no-repeat;
+  background-size: 160px 160px, 100% 100%;
+  background-attachment: fixed, fixed;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Playfair Display', 'Noto Serif', 'Noto Serif JP', Georgia, serif;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+h1 {
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  margin: 0 0 0.4rem;
+}
+
+h1 + .subtitle {
+  margin: 0 0 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+a {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+button {
+  font: inherit;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 0.6rem 1.35rem;
+  box-shadow: none;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+button:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  transform: none;
+  box-shadow: none;
+}
+
+button:active:not(:disabled) {
+  opacity: 0.85;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--azure-500);
+  outline-offset: 2px;
+}
+
+.btn-link {
+  display: inline;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.btn-link:hover:not(:disabled) {
+  color: var(--link-hover);
+  background: none;
+}
+
+.btn-link:disabled {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+button.btn-danger {
+  background: transparent;
+  color: var(--vermillion-deep);
+  border-color: var(--vermillion-deep);
+}
+
+button.btn-danger:hover:not(:disabled) {
+  background: var(--vermillion-tint);
+  color: var(--vermillion-deep);
+  border-color: var(--vermillion-deep);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+input,
+textarea {
+  font: inherit;
+  padding: 0.55rem 0.8rem;
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--text);
+  min-height: 44px;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--azure-500);
+  box-shadow: 0 0 0 3px var(--azure-100);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: var(--border-w) solid var(--border);
+  background: var(--paper);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.75rem 0.9rem;
+  border-bottom: var(--border-w) solid var(--canvas-deep);
+  color: var(--text);
+}
+
+th {
+  background: var(--paper-2);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+hr {
+  border: none;
+  border-top: var(--border-w) solid var(--canvas-deep);
+  margin: 1.75rem 0;
+}

@@ -1,0 +1,31 @@
+services:
+  auth:
+    build: ./auth
+    environment:
+      AUTH_COOKIE_SECURE: "false"
+    restart: unless-stopped
+
+  core:
+    build: ./core
+    restart: unless-stopped
+
+  gateway:
+    build: ./gateway
+    environment:
+      GATEWAY_AUTH_URL: http://auth:8002
+      GATEWAY_CORE_URL: http://core:8001
+      GATEWAY_CORS_ORIGINS: '["http://localhost:5173"]'
+    ports:
+      - "8000:8000"
+    depends_on:
+      - auth
+      - core
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - gateway
+    restart: unless-stopped
