@@ -131,11 +131,11 @@ auth/                   сервис аутентификации, основн�
 │   ├── deps.py         проверка роли админа
 │   ├── config.py       настройки AUTH_*
 │   ├── db.py           async SQLAlchemy
-│   ├── main.py         приложение FastAPI, загрузка ключа при старте
+│   ├── main.py         
 │   └── cli.py          create-admin
 └── scripts/
     └── gen_keys.py     генерация пары ключей Ed25519
 gateway/                прокси: проверяет подпись access и пересылает запросы
 core/                   каталог, корзина, заказы
-frontend/               React SPA для демонстрации
+frontend/               React SPA
 ```
