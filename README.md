@@ -53,7 +53,6 @@ sequenceDiagram
     C->>S: запрос со старым access
     S-->>C: 401
     C->>A: POST /auth/refresh, cookie
-    Note right of A: один UPDATE сверяет хеш и сроки и записывает новый хеш
     A-->>C: новый access и новый refresh, старый refresh больше не действует
     C->>S: повтор запроса с новым access
     C->>A: POST /auth/logout, cookie
